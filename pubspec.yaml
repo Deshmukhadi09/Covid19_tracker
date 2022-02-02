@@ -35,8 +35,8 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2 
   http:
-  auto_size_text: 
-  font_awesome_flutter: 
+  # flutter_webview_plugin: ^0.4.0
+  webview_flutter: ^3.0.0
   
 
 dev_dependencies:

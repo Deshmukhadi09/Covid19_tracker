@@ -1,4 +1,5 @@
 
+import 'package:covide_tracker/screens/map.dart';
 import 'package:covide_tracker/screens/state_hospital.dart';
 import 'package:flutter/material.dart';
 import 'homepage2.dart';
@@ -17,6 +18,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     const HomeScreen(),
     const StateTablePage(),
     const StateTablePage1(),
+    const MapsScreen(),
   ];
   int _currentIndex = 0;
 
@@ -34,7 +36,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         selectedItemColor: Colors.cyan,
         unselectedItemColor: Colors.white,
         elevation: 0.0,
-        items: [Icons.home, Icons.insert_chart, Icons.local_hospital_rounded]
+        items: [Icons.home, Icons.insert_chart, Icons.local_hospital_rounded, Icons.map]
             .asMap()
             .map((key, value) => MapEntry(
                   key,
