@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:covide_tracker/models/Ticases.dart';
+import 'package:covide_tracker/screens/hospital.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:covide_tracker/models/Tcases.dart';
@@ -307,6 +308,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 const SizedBox(
                                   height: 10,
                                 ),
+                                
                               ]))),
                     ]);
                   } else if (snapShot.hasError) {
@@ -314,8 +316,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   }
                   return const CircularProgressIndicator();
                 }),
-                const SizedBox(height: 15,),
-                //indian futureBuilder
+            const SizedBox(
+              height: 15,
+            ),
+            //indian futureBuilder
             FutureBuilder<Ticases>(
                 future: getJsonData1(),
                 builder: (BuildContext context, AsyncSnapshot snapShot) {
@@ -366,7 +370,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                           fontSize: 20,
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    Text("${covid?.total} ",style:const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),),
+                                    Text(
+                                      "${covid?.total} ",
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ],
                                 ),
                                 const SizedBox(
@@ -383,7 +393,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      Text("${covid?.deaths}",style:const TextStyle(color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),),
+                                      Text(
+                                        "${covid?.deaths}",
+                                        style: const TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ]),
                                 const SizedBox(
                                   height: 10,
@@ -397,11 +413,45 @@ class _HomeScreenState extends State<HomeScreen> {
                                               color: Colors.white,
                                               fontSize: 20,
                                               fontWeight: FontWeight.bold)),
-                                      Text("${covid?.discharged}",style:const TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold)),
+                                      Text("${covid?.discharged}",
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold)),
                                     ]),
                                 const SizedBox(
                                   height: 10,
                                 ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                  children: [
+                                    TextButton.icon(
+                                      style: TextButton.styleFrom(
+                                        padding: const EdgeInsets.symmetric(
+                                          vertical: 10.0,
+                                          horizontal: 20.0,
+                                        ),
+                                        backgroundColor: Colors.indigo,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(30.0),
+                                        ),
+                                      ),
+                                      onPressed: () {
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) =>const Hospital()));
+                                      },
+                                      icon: const Icon(
+                                        Icons.local_hospital,
+                                        color: Colors.white,
+                                      ),
+                                      label: const Text(
+                                        'Hospitals statistics',
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    ),
+                                  ],
+                                )
                               ]))),
                     ]);
                   } else if (snapShot.hasError) {

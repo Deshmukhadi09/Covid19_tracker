@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-class StateTablePage extends StatefulWidget {
-    const StateTablePage({Key? key}) : super(key: key);
+class StateTablePage1 extends StatefulWidget {
+    const StateTablePage1({Key? key}) : super(key: key);
   @override
-  _StateTablePageState createState() => _StateTablePageState();
+  _StateTablePage1State createState() => _StateTablePage1State();
 }
 
-class _StateTablePageState extends State<StateTablePage> {
-  String url = 'https://api.rootnet.in/covid19-in/stats/latest';
+class _StateTablePage1State extends State<StateTablePage1> {
+  String url = 'https://api.rootnet.in/covid19-in/stats/hospitals';
    var result;
 
   void makeRequest() async {
@@ -38,7 +38,7 @@ class _StateTablePageState extends State<StateTablePage> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "State Details",
+          "State Hospitals Details",
         ),
         
       ),
@@ -46,7 +46,7 @@ class _StateTablePageState extends State<StateTablePage> {
         child: ListView.builder(
           itemCount: result == null ? 0 : result.length,
           itemBuilder: (BuildContext context, index) {
-            if (result[index]['loc'] == 'Unknown*') {
+            if (result[index]['state'] == 'Unknown*') {
               return const Text("");
             } else {
               return Padding(
@@ -89,7 +89,7 @@ class _StateTablePageState extends State<StateTablePage> {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    result[index]['loc'].toString(),
+                                    result[index]['state'].toString(),
                                     style: const TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -102,7 +102,7 @@ class _StateTablePageState extends State<StateTablePage> {
                               children: <Widget>[
                                 const Expanded(
                                   child: Text(
-                                    'Active Cases',
+                                    'RuralHospitals',
                                     style: TextStyle(
                                       color: Colors.green,
                                       letterSpacing: 1.5,
@@ -112,7 +112,7 @@ class _StateTablePageState extends State<StateTablePage> {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    result[index]['totalConfirmed'].toString(),
+                                    result[index]['ruralHospitals'].toString(),
                                     style: const TextStyle(
                                       color: Colors.green,
                                       fontWeight: FontWeight.bold,
@@ -125,9 +125,9 @@ class _StateTablePageState extends State<StateTablePage> {
                               children: <Widget>[
                                 const Expanded(
                                   child: Text(
-                                    'Todays Cases',
+                                    'RuralBeds',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.green,
                                       letterSpacing: 1.5,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -135,9 +135,9 @@ class _StateTablePageState extends State<StateTablePage> {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    result[index]['confirmedCasesForeign'].toString(),
+                                    result[index]['ruralBeds'].toString(),
                                     style: const TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.green,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -148,9 +148,9 @@ class _StateTablePageState extends State<StateTablePage> {
                               children: <Widget>[
                                 const Expanded(
                                   child: Text(
-                                    'Total Recovered',
+                                    'UrbanHospitals',
                                     style: TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.yellow,
                                       letterSpacing: 1.5,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -158,9 +158,9 @@ class _StateTablePageState extends State<StateTablePage> {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    result[index]['discharged'].toString(),
+                                    result[index]['urbanHospitals'].toString(),
                                     style: const TextStyle(
-                                      color: Colors.white,
+                                      color: Colors.yellow,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -171,9 +171,9 @@ class _StateTablePageState extends State<StateTablePage> {
                               children: <Widget>[
                                 const Expanded(
                                   child: Text(
-                                    'Total Deaths',
+                                    'UrbanBeds',
                                     style: TextStyle(
-                                      color: Colors.red,
+                                      color: Colors.yellow,
                                       letterSpacing: 1.5,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -181,9 +181,55 @@ class _StateTablePageState extends State<StateTablePage> {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    result[index]['deaths'].toString(),
+                                    result[index]['urbanBeds'].toString(),
                                     style: const TextStyle(
-                                      color: Colors.red,
+                                      color: Colors.yellow,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                const Expanded(
+                                  child: Text(
+                                    'TotalHospitals',
+                                    style: TextStyle(
+                                      color: Colors.pink,
+                                      letterSpacing: 1.5,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    result[index]['totalHospitals'].toString(),
+                                    style: const TextStyle(
+                                      color: Colors.pink,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                const Expanded(
+                                  child: Text(
+                                    'TotalBeds',
+                                    style: TextStyle(
+                                      color: Colors.pink,
+                                      letterSpacing: 1.5,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    result[index]['totalBeds'].toString(),
+                                    style: const TextStyle(
+                                      color: Colors.pink,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),

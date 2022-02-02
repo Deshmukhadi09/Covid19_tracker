@@ -35,8 +35,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2 
   http:
-  flare_flutter: ^3.0.2
-  dio: ^4.0.4
+  auto_size_text: 
+  font_awesome_flutter: 
+  
 
 dev_dependencies:
   flutter_test:
